@@ -9,19 +9,19 @@ const ADD_SECOND = 'ADD_SECOND';
 function startTimer(){
     return {
         type: START_TIMER
-    }
+    };
 }
 
 function restartTimer(){
     return {
         type: RESTART_TIMER
-    }
+    };
 }
 
 function addSecond(){
     return {
         type: ADD_SECOND
-    }
+    };
 }
 
 //Reducer
@@ -30,7 +30,7 @@ const initialState = {
     isCounting: false,
     timerDuration: TIME_DURATION,
     elapsedTime: 0
-}
+};
 
 function reducer(state = initialState, action){
     switch(action.type){
@@ -40,6 +40,8 @@ function reducer(state = initialState, action){
             return applyRestartTimer(state);
         case ADD_SECOND:
             return applyAddSecond(state);
+        default:
+            return state;
     }
 }
 
@@ -48,7 +50,7 @@ function applyStartTimer(state){
     return {
         ...state,
         isCounting: true
-    }
+    };
 }
 
 function applyRestartTimer(state){
@@ -56,7 +58,7 @@ function applyRestartTimer(state){
         ...state,
         isCounting: false,
         elapsedTime: 0
-    }
+    };
 }
 
 function applyAddSecond(state){
@@ -64,22 +66,23 @@ function applyAddSecond(state){
         return {
             ...state,
             elapsedTime: state.elapsedTime + 1
-        }
+        };
     }
     else {
         return {
             ...state,
             isCounting: false
-        }
+        };
     }
 }
 
 //Export Action Creators
-cost actionCreators = {
+const actionCreators = {
     startTimer,
     restartTimer,
     addSecond
-}
+};
+export { actionCreators };
 
 //Export Reducer
 export default reducer;
